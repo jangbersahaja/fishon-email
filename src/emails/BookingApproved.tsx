@@ -22,7 +22,10 @@ export function BookingApprovedEmail({
 }: BookingApprovedEmailProps) {
   return (
     <EmailLayout preview={`Your booking for ${charterName} was approved!`}>
-      <EmailHeader title="Booking Approved! 🎉" subtitle="Time to secure your spot" />
+      <EmailHeader
+        title="Booking Approved! 🎉"
+        subtitle="Time to secure your spot"
+      />
 
       <Section style={content}>
         <Text style={greeting}>Hi {userName},</Text>

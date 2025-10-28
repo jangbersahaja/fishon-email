@@ -26,8 +26,7 @@ export function BookingRejectedEmail({
 
         <Text style={paragraph}>
           We&apos;re sorry, but your booking request for{" "}
-          <strong>{charterName}</strong> could not be accommodated at this
-          time.
+          <strong>{charterName}</strong> could not be accommodated at this time.
         </Text>
 
         {reason && (

@@ -115,8 +115,8 @@ Base wrapper for all emails with preview text and responsive container.
 Branded header with gradient background and logo.
 
 ```typescript
-<EmailHeader 
-  title="Welcome to Fishon" 
+<EmailHeader
+  title="Welcome to Fishon"
   subtitle="Start your fishing adventure"
 />
 ```
