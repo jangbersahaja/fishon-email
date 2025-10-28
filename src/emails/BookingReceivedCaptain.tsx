@@ -5,52 +5,52 @@ import { EmailHeader } from "../components/EmailHeader";
 import { EmailLayout } from "../components/EmailLayout";
 import { InfoBox } from "../components/InfoBox";
 
-interface BookingCreatedEmailProps {
-  userName: string;
+interface BookingReceivedCaptainEmailProps {
+  captainName: string;
   charterName: string;
+  anglerName: string;
   tripName: string;
   tripDate: string;
   tripDays: number;
   durationHours: number;
   startTime?: string;
   totalPrice: string;
-  confirmationUrl: string;
+  bookingUrl: string;
 }
 
-export function BookingCreatedEmail({
-  userName,
+export function BookingReceivedCaptainEmail({
+  captainName,
   charterName,
+  anglerName,
   tripName,
   tripDate,
   tripDays,
   durationHours,
   startTime,
   totalPrice,
-  confirmationUrl,
-}: BookingCreatedEmailProps) {
+  bookingUrl,
+}: BookingReceivedCaptainEmailProps) {
   const tripDateDisplay = `${tripDate} • ${tripDays} ${tripDays > 1 ? "Days" : "Day"}`;
   const durationDisplay = `${durationHours} ${durationHours > 1 ? "hours" : "hour"}`;
 
   return (
-    <EmailLayout
-      preview={`Your booking request for ${charterName} has been sent for review`}
-    >
+    <EmailLayout preview={`Your ${charterName} have received new booking`}>
       <EmailHeader
-        title="Booking In Review 🎣"
+        title="Booking Request Received 🎣"
         subtitle={`Charter: ${charterName}`}
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>Hi Captain {captainName},</Text>
 
         <Text style={paragraph}>
-          Thank you for choosing Fishon! We&apos;ve received your booking
-          request and the captain will review it shortly.
+          New booking received! Please proceed to accept or reject the booking.
         </Text>
 
         <Section style={detailsSection}>
           <Text style={sectionTitle}>Booking Details</Text>
 
+          <InfoBox label="Angler" value={anglerName} />
           <InfoBox label="Charter" value={charterName} />
           <InfoBox label="Trip" value={tripName} />
           <InfoBox label="Date" value={tripDateDisplay} />
@@ -59,13 +59,13 @@ export function BookingCreatedEmail({
           <InfoBox label="Total Price" value={totalPrice} />
         </Section>
 
-        <EmailButton href={confirmationUrl}>View Booking Details</EmailButton>
+        <EmailButton href={bookingUrl}>Review Booking Request</EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
-          You&apos;ll receive another email once the captain approves your
-          booking. If you have any questions, feel free to contact us.
+          Please review and respond to this booking request as soon as possible.
+          The angler is waiting for your confirmation.
         </Text>
       </Section>
     </EmailLayout>
@@ -112,16 +112,17 @@ const footerText = {
 };
 
 // Default props for preview
-BookingCreatedEmail.PreviewProps = {
-  userName: "Ahmad",
+BookingReceivedCaptainEmail.PreviewProps = {
+  captainName: "Hassan",
   charterName: "Full Day Deep Sea Adventure",
+  anglerName: "Ahmad bin Abdullah",
   tripName: "Half Day Trip",
   tripDate: "24 October 2025",
   tripDays: 1,
   durationHours: 4,
   startTime: "6:00 AM",
   totalPrice: "RM 800",
-  confirmationUrl: "https://fishon.my/bookings/123",
-} as BookingCreatedEmailProps;
+  bookingUrl: "https://captain.fishon.my/captain/bookings/123",
+} as BookingReceivedCaptainEmailProps;
 
-export default BookingCreatedEmail;
+export default BookingReceivedCaptainEmail;

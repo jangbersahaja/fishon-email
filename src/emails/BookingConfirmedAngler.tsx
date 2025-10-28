@@ -5,38 +5,44 @@ import { EmailHeader } from "../components/EmailHeader";
 import { EmailLayout } from "../components/EmailLayout";
 import { InfoBox } from "../components/InfoBox";
 
-interface BookingCreatedEmailProps {
+interface BookingConfirmedAnglerEmailProps {
   userName: string;
   charterName: string;
+  captainName: string;
+  captainEmail: string;
+  captainPhone: string;
   tripName: string;
   tripDate: string;
   tripDays: number;
   durationHours: number;
   startTime?: string;
-  totalPrice: string;
-  confirmationUrl: string;
+  finalPrice: string;
+  paymentMethod?: string;
+  bookingUrl: string;
 }
 
-export function BookingCreatedEmail({
+export function BookingConfirmedAnglerEmail({
   userName,
   charterName,
+  captainName,
+  captainEmail,
+  captainPhone,
   tripName,
   tripDate,
   tripDays,
   durationHours,
   startTime,
-  totalPrice,
-  confirmationUrl,
-}: BookingCreatedEmailProps) {
+  finalPrice,
+  paymentMethod,
+  bookingUrl,
+}: BookingConfirmedAnglerEmailProps) {
   const tripDateDisplay = `${tripDate} • ${tripDays} ${tripDays > 1 ? "Days" : "Day"}`;
   const durationDisplay = `${durationHours} ${durationHours > 1 ? "hours" : "hour"}`;
 
   return (
-    <EmailLayout
-      preview={`Your booking request for ${charterName} has been sent for review`}
-    >
+    <EmailLayout preview={`Booking confirmed - Your trip is all set!`}>
       <EmailHeader
-        title="Booking In Review 🎣"
+        title="Booking Confirmed ✅"
         subtitle={`Charter: ${charterName}`}
       />
 
@@ -44,9 +50,19 @@ export function BookingCreatedEmail({
         <Text style={greeting}>Hi {userName},</Text>
 
         <Text style={paragraph}>
-          Thank you for choosing Fishon! We&apos;ve received your booking
-          request and the captain will review it shortly.
+          Great news! Your booking has been confirmed. We have received your
+          payment of {finalPrice}. You may contact Captain {captainName} to
+          prepare for the trip.
         </Text>
+
+        <Section style={detailsSection}>
+          <Text style={sectionTitle}>Payment Details</Text>
+
+          <InfoBox label="Amount Paid" value={finalPrice} />
+          {paymentMethod && (
+            <InfoBox label="Payment Method" value={paymentMethod} />
+          )}
+        </Section>
 
         <Section style={detailsSection}>
           <Text style={sectionTitle}>Booking Details</Text>
@@ -56,16 +72,23 @@ export function BookingCreatedEmail({
           <InfoBox label="Date" value={tripDateDisplay} />
           <InfoBox label="Duration" value={durationDisplay} />
           {startTime && <InfoBox label="Start Time" value={startTime} />}
-          <InfoBox label="Total Price" value={totalPrice} />
         </Section>
 
-        <EmailButton href={confirmationUrl}>View Booking Details</EmailButton>
+        <Section style={detailsSection}>
+          <Text style={sectionTitle}>Captain Contact Information</Text>
+
+          <InfoBox label="Name" value={captainName} />
+          <InfoBox label="Email" value={captainEmail} />
+          <InfoBox label="Phone" value={captainPhone} />
+        </Section>
+
+        <EmailButton href={bookingUrl}>View Booking Details</EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
-          You&apos;ll receive another email once the captain approves your
-          booking. If you have any questions, feel free to contact us.
+          Get ready for an amazing fishing adventure! If you have any questions,
+          feel free to contact your captain or our support team.
         </Text>
       </Section>
     </EmailLayout>
@@ -112,16 +135,20 @@ const footerText = {
 };
 
 // Default props for preview
-BookingCreatedEmail.PreviewProps = {
+BookingConfirmedAnglerEmail.PreviewProps = {
   userName: "Ahmad",
   charterName: "Full Day Deep Sea Adventure",
+  captainName: "Hassan",
+  captainEmail: "hassan@example.com",
+  captainPhone: "+60 12-987 6543",
   tripName: "Half Day Trip",
   tripDate: "24 October 2025",
   tripDays: 1,
   durationHours: 4,
   startTime: "6:00 AM",
-  totalPrice: "RM 800",
-  confirmationUrl: "https://fishon.my/bookings/123",
-} as BookingCreatedEmailProps;
+  finalPrice: "RM 800",
+  paymentMethod: "Online Banking",
+  bookingUrl: "https://fishon.my/bookings/123",
+} as BookingConfirmedAnglerEmailProps;
 
-export default BookingCreatedEmail;
+export default BookingConfirmedAnglerEmail;

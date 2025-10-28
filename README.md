@@ -46,16 +46,19 @@ await sendMail({
 ### Available Templates
 
 #### Booking Templates
+
 - `renderBookingCreatedEmail` - Booking request received
 - `renderBookingApprovedEmail` - Booking approved, payment required
 - `renderBookingRejectedEmail` - Booking rejected with reason
 
 #### Auth & Verification Templates
+
 - `renderVerificationCodeEmail` - Universal TAC code (5 purposes: registration, login, forgot_password, guest_booking, password_reset)
 - `renderWelcomeEmail` - Welcome new users (angler/captain variants)
 - `renderPasswordChangedEmail` - Password reset/change security notifications
 
 #### Captain Templates
+
 - `renderCaptainRegistrationEmail` - Captain welcome with onboarding steps
 
 ### Custom Emails

@@ -10,7 +10,7 @@ export function EmailHeader({ title, subtitle }: EmailHeaderProps) {
   return (
     <Section style={header}>
       <Img
-        src="https://fishon.my/images/logo-white.png"
+        src="https://fishon.my/images/logos/fishon-logo-white.png"
         alt="Fishon"
         width="120"
         height="40"
