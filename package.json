@@ -1,0 +1,30 @@
+{
+  "name": "@fishon/email",
+  "version": "1.0.0",
+  "description": "Shared email templates for Fishon applications using React Email",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "email dev",
+    "build": "tsc",
+    "export": "email export"
+  },
+  "keywords": [
+    "fishon",
+    "email",
+    "react-email",
+    "templates"
+  ],
+  "author": "Fishon Team",
+  "license": "MIT",
+  "dependencies": {
+    "@react-email/components": "^0.5.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "typescript": "^5.9.3"
+  }
+}
