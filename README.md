@@ -45,9 +45,18 @@ await sendMail({
 
 ### Available Templates
 
-- `renderBookingCreatedEmail` - Booking confirmation
-- `renderBookingApprovedEmail` - Booking approval notification
-- `renderBookingRejectedEmail` - Booking rejection with reason
+#### Booking Templates
+- `renderBookingCreatedEmail` - Booking request received
+- `renderBookingApprovedEmail` - Booking approved, payment required
+- `renderBookingRejectedEmail` - Booking rejected with reason
+
+#### Auth & Verification Templates
+- `renderVerificationCodeEmail` - Universal TAC code (5 purposes: registration, login, forgot_password, guest_booking, password_reset)
+- `renderWelcomeEmail` - Welcome new users (angler/captain variants)
+- `renderPasswordChangedEmail` - Password reset/change security notifications
+
+#### Captain Templates
+- `renderCaptainRegistrationEmail` - Captain welcome with onboarding steps
 
 ### Custom Emails
 
@@ -155,6 +164,24 @@ Then update in consuming apps:
 # In fishon-market or fishon-captain
 npm install git+https://github.com/jangbersahaja/fishon-email#main
 ```
+
+## Migration from Legacy Email System
+
+If migrating from legacy inline HTML templates, see detailed migration guides:
+
+- **fishon-market:** `docs/EMAIL_MIGRATION.md`
+- **fishon-captain:** `docs/EMAIL_MIGRATION.md`
+
+### Quick Migration Steps
+
+1. Install `@fishon/email` package
+2. Import new email service functions
+3. Replace old render functions with new imports
+4. Update function signatures to match new interfaces
+5. Test email rendering in preview mode
+6. Deprecate legacy email code
+
+**Migration Date:** October 28, 2025
 
 ## License
 
