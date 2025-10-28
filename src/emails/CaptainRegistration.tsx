@@ -14,9 +14,7 @@ export function CaptainRegistrationEmail({
   dashboardUrl,
 }: CaptainRegistrationEmailProps) {
   return (
-    <EmailLayout
-      preview={`Welcome to Fishon Captain, ${captainName}!`}
-    >
+    <EmailLayout preview={`Welcome to Fishon Captain, ${captainName}!`}>
       <EmailHeader
         title="Registration Successful! ⚓"
         subtitle="Welcome to the Fishon Captain community"
@@ -27,14 +25,12 @@ export function CaptainRegistrationEmail({
 
         <Text style={paragraph}>
           Congratulations! Your registration as a Captain on Fishon.my was
-          successful. We&apos;re thrilled to have you join our growing
-          community of professional fishing charter operators.
+          successful. We&apos;re thrilled to have you join our growing community
+          of professional fishing charter operators.
         </Text>
 
         <Section style={successBox}>
-          <Text style={successText}>
-            ✓ Your Captain account is now active!
-          </Text>
+          <Text style={successText}>✓ Your Captain account is now active!</Text>
         </Section>
 
         <Section style={nextStepsBox}>

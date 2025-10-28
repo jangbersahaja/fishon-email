@@ -17,8 +17,7 @@ export function PasswordChangedEmail({
   supportUrl = "https://fishon.my/contact",
 }: PasswordChangedEmailProps) {
   const action = changeType === "reset" ? "reset" : "changed";
-  const actionCap =
-    changeType === "reset" ? "Reset" : "Changed";
+  const actionCap = changeType === "reset" ? "Reset" : "Changed";
 
   return (
     <EmailLayout preview={`Your password was ${action}`}>
@@ -35,14 +34,14 @@ export function PasswordChangedEmail({
         </Text>
 
         <Section style={successBox}>
-          <Text style={successText}>
-            ✓ Password {actionCap} Successfully
-          </Text>
+          <Text style={successText}>✓ Password {actionCap} Successfully</Text>
           <Text style={timestampText}>{timestamp}</Text>
         </Section>
 
         <Section style={warningBox}>
-          <Text style={warningTitle}>⚠️ Didn&apos;t {action} your password?</Text>
+          <Text style={warningTitle}>
+            ⚠️ Didn&apos;t {action} your password?
+          </Text>
           <Text style={warningText}>
             If you didn&apos;t make this change, your account may be
             compromised. Please contact our support team immediately:
