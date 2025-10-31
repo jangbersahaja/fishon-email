@@ -14,11 +14,19 @@ export function BookingApprovedEmail({ userName, charterName, tripDate, paymentU
                 ","),
             React.createElement(Section, { style: successBox },
                 React.createElement(Text, { style: successText }, "\u2705 Great news! Your booking has been approved by the captain.")),
-            React.createElement(Text, { style: paragraph }, "Complete your payment to confirm your booking and secure your spot."),
+            React.createElement(Text, { style: paragraph },
+                "Complete your payment within ",
+                React.createElement("strong", null, "48 hours"),
+                " to confirm your booking and secure your spot."),
+            React.createElement(Section, { style: warningBox },
+                React.createElement(Text, { style: warningText },
+                    "\u23F0 ",
+                    React.createElement("strong", null, "Payment Deadline:"),
+                    " Your booking will expire if payment is not received within 48 hours. Don't miss out!")),
             React.createElement(Section, { style: detailsSection },
                 React.createElement(InfoBox, { label: "Charter", value: charterName }),
                 React.createElement(InfoBox, { label: "Date", value: tripDate })),
-            React.createElement(EmailButton, { href: paymentUrl }, "Complete Payment"),
+            React.createElement(EmailButton, { href: paymentUrl }, "Complete Payment Now"),
             React.createElement(Hr, { style: divider }),
             React.createElement(Text, { style: footerText },
                 "Questions? View your full booking details",
@@ -46,6 +54,18 @@ const successText = {
     color: "#166534",
     margin: "0",
     fontWeight: "600",
+};
+const warningBox = {
+    backgroundColor: "#fef3c7",
+    borderLeft: "4px solid #f59e0b",
+    padding: "16px",
+    borderRadius: "6px",
+    margin: "0 0 24px",
+};
+const warningText = {
+    fontSize: "14px",
+    color: "#92400e",
+    margin: "0",
 };
 const paragraph = {
     fontSize: "16px",
