@@ -3,7 +3,7 @@ import * as React from "react";
 import { EmailButton } from "../components/EmailButton";
 import { EmailHeader } from "../components/EmailHeader";
 import { EmailLayout } from "../components/EmailLayout";
-export function BookingRejectedEmail({ userName, charterName, reason, searchUrl, }) {
+export function BookingRejectedEmail({ userName, charterName, reason, searchUrl, paymentFlow, refundAmount, }) {
     return (React.createElement(EmailLayout, { preview: `Booking update for ${charterName}` },
         React.createElement(EmailHeader, { title: "Booking Update", subtitle: "We're here to help" }),
         React.createElement(Section, { style: content },
@@ -19,6 +19,18 @@ export function BookingRejectedEmail({ userName, charterName, reason, searchUrl,
             reason && (React.createElement(Section, { style: reasonBox },
                 React.createElement(Text, { style: reasonLabel }, "Reason from Captain:"),
                 React.createElement(Text, { style: reasonText }, reason))),
+            paymentFlow === "TOKENIZED" && (React.createElement(Section, { style: infoBox },
+                React.createElement(Text, { style: infoText },
+                    "\uD83D\uDCB3 ",
+                    React.createElement("strong", null, "Good news:"),
+                    " Your card was only authorized, not charged. The authorization has been released and you will not see any charge on your statement."))),
+            paymentFlow === "DIRECT" && refundAmount && (React.createElement(Section, { style: infoBox },
+                React.createElement(Text, { style: infoText },
+                    "\uD83D\uDCB0 ",
+                    React.createElement("strong", null, "Refund initiated:"),
+                    " We've started processing your refund of ",
+                    refundAmount,
+                    ". The funds should appear in your account within 3-5 business days."))),
             React.createElement(Text, { style: paragraph }, "Don't worry! We have many other amazing fishing charters available. Browse our selection to find your next adventure."),
             React.createElement(EmailButton, { href: searchUrl }, "Find Other Charters"),
             React.createElement(Hr, { style: divider }),
@@ -46,12 +58,23 @@ const reasonBox = {
     margin: "0 0 24px",
 };
 const reasonLabel = {
-    fontSize: "12px",
+    fontSize: "14px",
+    fontWeight: "600",
     color: "#991b1b",
     margin: "0 0 8px",
-    textTransform: "uppercase",
-    letterSpacing: "0.5px",
-    fontWeight: "600",
+};
+const infoBox = {
+    backgroundColor: "#f0fdf4",
+    borderLeft: "4px solid #22c55e",
+    padding: "16px",
+    borderRadius: "6px",
+    margin: "0 0 24px",
+};
+const infoText = {
+    fontSize: "14px",
+    color: "#166534",
+    margin: "0",
+    lineHeight: "1.6",
 };
 const reasonText = {
     fontSize: "14px",

@@ -4,7 +4,7 @@ import { EmailButton } from "../components/EmailButton";
 import { EmailHeader } from "../components/EmailHeader";
 import { EmailLayout } from "../components/EmailLayout";
 import { InfoBox } from "../components/InfoBox";
-export function BookingCreatedEmail({ userName, charterName, tripName, tripDate, tripDays, durationHours, startTime, totalPrice, confirmationUrl, }) {
+export function BookingCreatedEmail({ userName, charterName, tripName, tripDate, tripDays, durationHours, startTime, totalPrice, confirmationUrl, paymentFlow, }) {
     const tripDateDisplay = `${tripDate} • ${tripDays} ${tripDays > 1 ? "Days" : "Day"}`;
     const durationDisplay = `${durationHours} ${durationHours > 1 ? "hours" : "hour"}`;
     return (React.createElement(EmailLayout, { preview: `Your booking request for ${charterName} has been sent for review` },
@@ -15,6 +15,19 @@ export function BookingCreatedEmail({ userName, charterName, tripName, tripDate,
                 userName,
                 ","),
             React.createElement(Text, { style: paragraph }, "Thank you for choosing Fishon! We've received your booking request and the captain will review it shortly."),
+            paymentFlow === "TOKENIZED" && (React.createElement(Section, { style: infoBox },
+                React.createElement(Text, { style: infoText },
+                    "\uD83D\uDCB3 ",
+                    React.createElement("strong", null, "Your card has been authorized"),
+                    " (not charged yet). We'll only charge your card if the captain approves your booking."))),
+            paymentFlow === "DIRECT" && (React.createElement(Section, { style: infoBox },
+                React.createElement(Text, { style: infoText },
+                    "\u2705 ",
+                    React.createElement("strong", null, "Payment received!"),
+                    " Your payment of ",
+                    totalPrice,
+                    " ",
+                    "has been received and is being held securely. It will be released to the captain once they approve your booking."))),
             React.createElement(Section, { style: detailsSection },
                 React.createElement(Text, { style: sectionTitle }, "Booking Details"),
                 React.createElement(InfoBox, { label: "Charter", value: charterName }),
@@ -40,6 +53,19 @@ const paragraph = {
     color: "#374151",
     lineHeight: "1.6",
     margin: "0 0 24px",
+};
+const infoBox = {
+    backgroundColor: "#f0f9ff",
+    borderLeft: "4px solid #3b82f6",
+    padding: "16px",
+    borderRadius: "6px",
+    margin: "0 0 24px",
+};
+const infoText = {
+    fontSize: "14px",
+    color: "#1e40af",
+    margin: "0",
+    lineHeight: "1.6",
 };
 const detailsSection = {
     margin: "24px 0",

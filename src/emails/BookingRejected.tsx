@@ -9,6 +9,8 @@ interface BookingRejectedEmailProps {
   charterName: string;
   reason?: string;
   searchUrl: string;
+  paymentFlow?: "TOKENIZED" | "DIRECT"; // NEW: payment flow type
+  refundAmount?: string; // For DIRECT flow
 }
 
 export function BookingRejectedEmail({
@@ -16,6 +18,8 @@ export function BookingRejectedEmail({
   charterName,
   reason,
   searchUrl,
+  paymentFlow,
+  refundAmount,
 }: BookingRejectedEmailProps) {
   return (
     <EmailLayout preview={`Booking update for ${charterName}`}>
@@ -33,6 +37,26 @@ export function BookingRejectedEmail({
           <Section style={reasonBox}>
             <Text style={reasonLabel}>Reason from Captain:</Text>
             <Text style={reasonText}>{reason}</Text>
+          </Section>
+        )}
+
+        {paymentFlow === "TOKENIZED" && (
+          <Section style={infoBox}>
+            <Text style={infoText}>
+              💳 <strong>Good news:</strong> Your card was only authorized, not
+              charged. The authorization has been released and you will not see
+              any charge on your statement.
+            </Text>
+          </Section>
+        )}
+
+        {paymentFlow === "DIRECT" && refundAmount && (
+          <Section style={infoBox}>
+            <Text style={infoText}>
+              💰 <strong>Refund initiated:</strong> We&apos;ve started
+              processing your refund of {refundAmount}. The funds should appear
+              in your account within 3-5 business days.
+            </Text>
           </Section>
         )}
 
@@ -80,12 +104,25 @@ const reasonBox = {
 };
 
 const reasonLabel = {
-  fontSize: "12px",
+  fontSize: "14px",
+  fontWeight: "600",
   color: "#991b1b",
   margin: "0 0 8px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.5px",
-  fontWeight: "600",
+};
+
+const infoBox = {
+  backgroundColor: "#f0fdf4",
+  borderLeft: "4px solid #22c55e",
+  padding: "16px",
+  borderRadius: "6px",
+  margin: "0 0 24px",
+};
+
+const infoText = {
+  fontSize: "14px",
+  color: "#166534",
+  margin: "0",
+  lineHeight: "1.6",
 };
 
 const reasonText = {

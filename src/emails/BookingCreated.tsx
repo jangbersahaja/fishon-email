@@ -15,6 +15,7 @@ interface BookingCreatedEmailProps {
   startTime?: string;
   totalPrice: string;
   confirmationUrl: string;
+  paymentFlow?: "TOKENIZED" | "DIRECT"; // NEW: payment flow type
 }
 
 export function BookingCreatedEmail({
@@ -27,6 +28,7 @@ export function BookingCreatedEmail({
   startTime,
   totalPrice,
   confirmationUrl,
+  paymentFlow,
 }: BookingCreatedEmailProps) {
   const tripDateDisplay = `${tripDate} • ${tripDays} ${tripDays > 1 ? "Days" : "Day"}`;
   const durationDisplay = `${durationHours} ${durationHours > 1 ? "hours" : "hour"}`;
@@ -47,6 +49,26 @@ export function BookingCreatedEmail({
           Thank you for choosing Fishon! We&apos;ve received your booking
           request and the captain will review it shortly.
         </Text>
+
+        {paymentFlow === "TOKENIZED" && (
+          <Section style={infoBox}>
+            <Text style={infoText}>
+              💳 <strong>Your card has been authorized</strong> (not charged
+              yet). We&apos;ll only charge your card if the captain approves
+              your booking.
+            </Text>
+          </Section>
+        )}
+
+        {paymentFlow === "DIRECT" && (
+          <Section style={infoBox}>
+            <Text style={infoText}>
+              ✅ <strong>Payment received!</strong> Your payment of {totalPrice}{" "}
+              has been received and is being held securely. It will be released
+              to the captain once they approve your booking.
+            </Text>
+          </Section>
+        )}
 
         <Section style={detailsSection}>
           <Text style={sectionTitle}>Booking Details</Text>
@@ -87,6 +109,21 @@ const paragraph = {
   color: "#374151",
   lineHeight: "1.6",
   margin: "0 0 24px",
+};
+
+const infoBox = {
+  backgroundColor: "#f0f9ff",
+  borderLeft: "4px solid #3b82f6",
+  padding: "16px",
+  borderRadius: "6px",
+  margin: "0 0 24px",
+};
+
+const infoText = {
+  fontSize: "14px",
+  color: "#1e40af",
+  margin: "0",
+  lineHeight: "1.6",
 };
 
 const detailsSection = {

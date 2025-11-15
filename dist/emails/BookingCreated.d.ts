@@ -9,8 +9,9 @@ interface BookingCreatedEmailProps {
     startTime?: string;
     totalPrice: string;
     confirmationUrl: string;
+    paymentFlow?: "TOKENIZED" | "DIRECT";
 }
-export declare function BookingCreatedEmail({ userName, charterName, tripName, tripDate, tripDays, durationHours, startTime, totalPrice, confirmationUrl, }: BookingCreatedEmailProps): React.JSX.Element;
+export declare function BookingCreatedEmail({ userName, charterName, tripName, tripDate, tripDays, durationHours, startTime, totalPrice, confirmationUrl, paymentFlow, }: BookingCreatedEmailProps): React.JSX.Element;
 export declare namespace BookingCreatedEmail {
     var PreviewProps: BookingCreatedEmailProps;
 }

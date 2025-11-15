@@ -4,8 +4,10 @@ interface BookingRejectedEmailProps {
     charterName: string;
     reason?: string;
     searchUrl: string;
+    paymentFlow?: "TOKENIZED" | "DIRECT";
+    refundAmount?: string;
 }
-export declare function BookingRejectedEmail({ userName, charterName, reason, searchUrl, }: BookingRejectedEmailProps): React.JSX.Element;
+export declare function BookingRejectedEmail({ userName, charterName, reason, searchUrl, paymentFlow, refundAmount, }: BookingRejectedEmailProps): React.JSX.Element;
 export declare namespace BookingRejectedEmail {
     var PreviewProps: BookingRejectedEmailProps;
 }
