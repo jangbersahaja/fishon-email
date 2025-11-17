@@ -58,7 +58,9 @@ export function BookingConfirmedCaptainEmail({
 
         <Text style={paragraph}>
           Great news! The booking has been confirmed. We have received{" "}
-          {finalPrice} payment{paymentFlow === "DIRECT" ? " (paid upfront)" : " (after approval)"}. You may contact the angler to prepare for the trip.
+          {captainEarnings} payment
+          {paymentFlow === "DIRECT" ? " (paid upfront)" : " (after approval)"}.
+          You may contact the angler to prepare for the trip.
         </Text>
 
         <Section style={detailsSection}>
@@ -74,12 +76,6 @@ export function BookingConfirmedCaptainEmail({
         {(subtotal || platformFee || captainEarnings) && (
           <Section style={detailsSection}>
             <Text style={sectionTitle}>Payment Breakdown</Text>
-
-            <InfoBox label="Total Payment Received" value={finalPrice} />
-            {subtotal && <InfoBox label="Trip Price" value={subtotal} />}
-            {platformFee && (
-              <InfoBox label="Platform Fee" value={`-${platformFee}`} />
-            )}
             {captainEarnings && (
               <Section style={earningsBox}>
                 <Text style={earningsLabel}>Your Earnings</Text>
