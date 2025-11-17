@@ -18,6 +18,11 @@ interface BookingConfirmedCaptainEmailProps {
   startTime?: string;
   finalPrice: string;
   bookingUrl: string;
+  // Pricing breakdown
+  subtotal?: string;
+  platformFee?: string;
+  captainEarnings?: string;
+  paymentFlow?: "TOKENIZED" | "DIRECT";
 }
 
 export function BookingConfirmedCaptainEmail({
@@ -33,6 +38,10 @@ export function BookingConfirmedCaptainEmail({
   startTime,
   finalPrice,
   bookingUrl,
+  subtotal,
+  platformFee,
+  captainEarnings,
+  paymentFlow,
 }: BookingConfirmedCaptainEmailProps) {
   const tripDateDisplay = `${tripDate} • ${tripDays} ${tripDays > 1 ? "Days" : "Day"}`;
   const durationDisplay = `${durationHours} ${durationHours > 1 ? "hours" : "hour"}`;
@@ -49,7 +58,7 @@ export function BookingConfirmedCaptainEmail({
 
         <Text style={paragraph}>
           Great news! The booking has been confirmed. We have received{" "}
-          {finalPrice}. You may contact the angler to prepare for the trip.
+          {finalPrice} payment{paymentFlow === "DIRECT" ? " (paid upfront)" : " (after approval)"}. You may contact the angler to prepare for the trip.
         </Text>
 
         <Section style={detailsSection}>
@@ -60,8 +69,30 @@ export function BookingConfirmedCaptainEmail({
           <InfoBox label="Date" value={tripDateDisplay} />
           <InfoBox label="Duration" value={durationDisplay} />
           {startTime && <InfoBox label="Start Time" value={startTime} />}
-          <InfoBox label="Payment Received" value={finalPrice} />
         </Section>
+
+        {(subtotal || platformFee || captainEarnings) && (
+          <Section style={detailsSection}>
+            <Text style={sectionTitle}>Payment Breakdown</Text>
+
+            <InfoBox label="Total Payment Received" value={finalPrice} />
+            {subtotal && <InfoBox label="Trip Price" value={subtotal} />}
+            {platformFee && (
+              <InfoBox label="Platform Fee" value={`-${platformFee}`} />
+            )}
+            {captainEarnings && (
+              <Section style={earningsBox}>
+                <Text style={earningsLabel}>Your Earnings</Text>
+                <Text style={earningsValue}>{captainEarnings}</Text>
+              </Section>
+            )}
+
+            <Text style={helperText}>
+              Your earnings will be transferred to your registered bank account
+              according to the payout schedule.
+            </Text>
+          </Section>
+        )}
 
         <Section style={detailsSection}>
           <Text style={sectionTitle}>Angler Contact Information</Text>
@@ -123,6 +154,37 @@ const footerText = {
   margin: "0",
 };
 
+const earningsBox = {
+  backgroundColor: "#f0fdf4",
+  borderLeft: "4px solid #22c55e",
+  padding: "16px",
+  borderRadius: "6px",
+  margin: "12px 0",
+};
+
+const earningsLabel = {
+  fontSize: "14px",
+  color: "#166534",
+  margin: "0 0 8px",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.5px",
+  fontWeight: "700",
+};
+
+const earningsValue = {
+  fontSize: "24px",
+  fontWeight: "700",
+  color: "#166534",
+  margin: "0",
+};
+
+const helperText = {
+  fontSize: "12px",
+  color: "#6b7280",
+  margin: "12px 0 0 0",
+  fontStyle: "italic" as const,
+};
+
 // Default props for preview
 BookingConfirmedCaptainEmail.PreviewProps = {
   captainName: "Hassan",
@@ -135,8 +197,12 @@ BookingConfirmedCaptainEmail.PreviewProps = {
   tripDays: 1,
   durationHours: 4,
   startTime: "6:00 AM",
-  finalPrice: "RM 800",
+  finalPrice: "RM 800.00",
   bookingUrl: "https://captain.fishon.my/captain/bookings/123",
+  subtotal: "RM 727.27",
+  platformFee: "RM 72.73",
+  captainEarnings: "RM 654.54",
+  paymentFlow: "TOKENIZED",
 } as BookingConfirmedCaptainEmailProps;
 
 export default BookingConfirmedCaptainEmail;
