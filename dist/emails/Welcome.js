@@ -3,7 +3,7 @@ import * as React from "react";
 import { EmailButton } from "../components/EmailButton";
 import { EmailHeader } from "../components/EmailHeader";
 import { EmailLayout } from "../components/EmailLayout";
-export function WelcomeEmail({ userName, userType, loginUrl, }) {
+export function WelcomeEmail({ userName, userType, loginUrl, promoCode, }) {
     const isAngler = userType === "angler";
     return (React.createElement(EmailLayout, { preview: `Welcome to Fishon${isAngler ? "" : " Captain"}, ${userName}!` },
         React.createElement(EmailHeader, { title: `Welcome to Fishon${isAngler ? "" : " Captain"}! 🎣`, subtitle: "Your fishing adventure starts here" }),
@@ -19,6 +19,12 @@ export function WelcomeEmail({ userName, userType, loginUrl, }) {
                 "Welcome to ",
                 React.createElement("strong", null, "Fishon Captain"),
                 "! Thank you for joining our community of professional fishing charter operators."))),
+            isAngler && promoCode && (React.createElement(Section, { style: promoBox },
+                React.createElement(Text, { style: promoTitle }, "\uD83C\uDF81 Welcome Gift!"),
+                React.createElement(Text, { style: promoDescription }, "As a thank you for joining Fishon, here's a special 10% discount code for your first booking:"),
+                React.createElement(Section, { style: promoCodeBox },
+                    React.createElement(Text, { style: promoCodeText }, promoCode)),
+                React.createElement(Text, { style: promoNote }, "Use this code at checkout to get 10% off your first fishing trip. Happy fishing! \uD83C\uDFA3"))),
             isAngler ? (React.createElement(Section, { style: featureBox },
                 React.createElement(Text, { style: featureTitle }, "\uD83C\uDFA3 What You Can Do:"),
                 React.createElement(Text, { style: featureList },
@@ -95,9 +101,52 @@ const link = {
     color: "#ec2227",
     textDecoration: "underline",
 };
+const promoBox = {
+    backgroundColor: "#fef3c7",
+    padding: "24px",
+    borderRadius: "12px",
+    borderLeft: "4px solid #f59e0b",
+    margin: "24px 0",
+    textAlign: "center",
+};
+const promoTitle = {
+    fontSize: "18px",
+    fontWeight: "700",
+    color: "#92400e",
+    margin: "0 0 12px",
+};
+const promoDescription = {
+    fontSize: "15px",
+    color: "#78350f",
+    lineHeight: "1.6",
+    margin: "0 0 16px",
+};
+const promoCodeBox = {
+    backgroundColor: "#ffffff",
+    padding: "16px 24px",
+    borderRadius: "8px",
+    border: "2px dashed #f59e0b",
+    margin: "0 auto 16px",
+    display: "inline-block",
+};
+const promoCodeText = {
+    fontSize: "24px",
+    fontWeight: "700",
+    color: "#ea580c",
+    letterSpacing: "2px",
+    margin: "0",
+    fontFamily: "monospace",
+};
+const promoNote = {
+    fontSize: "13px",
+    color: "#92400e",
+    margin: "0",
+    fontStyle: "italic",
+};
 WelcomeEmail.PreviewProps = {
     userName: "Ahmad",
     userType: "angler",
     loginUrl: "https://fishon.my/login",
+    promoCode: "FISHONTRIP1",
 };
 export default WelcomeEmail;

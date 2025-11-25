@@ -8,12 +8,14 @@ interface WelcomeEmailProps {
   userName: string;
   userType: "angler" | "captain";
   loginUrl: string;
+  promoCode?: string;
 }
 
 export function WelcomeEmail({
   userName,
   userType,
   loginUrl,
+  promoCode,
 }: WelcomeEmailProps) {
   const isAngler = userType === "angler";
 
@@ -43,6 +45,23 @@ export function WelcomeEmail({
             </>
           )}
         </Text>
+
+        {isAngler && promoCode && (
+          <Section style={promoBox}>
+            <Text style={promoTitle}>🎁 Welcome Gift!</Text>
+            <Text style={promoDescription}>
+              As a thank you for joining Fishon, here&apos;s a special 10%
+              discount code for your first booking:
+            </Text>
+            <Section style={promoCodeBox}>
+              <Text style={promoCodeText}>{promoCode}</Text>
+            </Section>
+            <Text style={promoNote}>
+              Use this code at checkout to get 10% off your first fishing trip.
+              Happy fishing! 🎣
+            </Text>
+          </Section>
+        )}
 
         {isAngler ? (
           <Section style={featureBox}>
@@ -155,10 +174,59 @@ const link = {
   textDecoration: "underline",
 };
 
+const promoBox = {
+  backgroundColor: "#fef3c7",
+  padding: "24px",
+  borderRadius: "12px",
+  borderLeft: "4px solid #f59e0b",
+  margin: "24px 0",
+  textAlign: "center" as const,
+};
+
+const promoTitle = {
+  fontSize: "18px",
+  fontWeight: "700",
+  color: "#92400e",
+  margin: "0 0 12px",
+};
+
+const promoDescription = {
+  fontSize: "15px",
+  color: "#78350f",
+  lineHeight: "1.6",
+  margin: "0 0 16px",
+};
+
+const promoCodeBox = {
+  backgroundColor: "#ffffff",
+  padding: "16px 24px",
+  borderRadius: "8px",
+  border: "2px dashed #f59e0b",
+  margin: "0 auto 16px",
+  display: "inline-block",
+};
+
+const promoCodeText = {
+  fontSize: "24px",
+  fontWeight: "700",
+  color: "#ea580c",
+  letterSpacing: "2px",
+  margin: "0",
+  fontFamily: "monospace",
+};
+
+const promoNote = {
+  fontSize: "13px",
+  color: "#92400e",
+  margin: "0",
+  fontStyle: "italic" as const,
+};
+
 WelcomeEmail.PreviewProps = {
   userName: "Ahmad",
   userType: "angler",
   loginUrl: "https://fishon.my/login",
+  promoCode: "FISHONTRIP1",
 } as WelcomeEmailProps;
 
 export default WelcomeEmail;

@@ -3,8 +3,9 @@ interface WelcomeEmailProps {
     userName: string;
     userType: "angler" | "captain";
     loginUrl: string;
+    promoCode?: string;
 }
-export declare function WelcomeEmail({ userName, userType, loginUrl, }: WelcomeEmailProps): React.JSX.Element;
+export declare function WelcomeEmail({ userName, userType, loginUrl, promoCode, }: WelcomeEmailProps): React.JSX.Element;
 export declare namespace WelcomeEmail {
     var PreviewProps: WelcomeEmailProps;
 }
