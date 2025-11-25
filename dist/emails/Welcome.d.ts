@@ -10,3 +10,4 @@ export declare namespace WelcomeEmail {
     var PreviewProps: WelcomeEmailProps;
 }
 export default WelcomeEmail;
+export type { WelcomeEmailProps };

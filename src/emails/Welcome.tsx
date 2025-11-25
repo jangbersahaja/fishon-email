@@ -230,3 +230,4 @@ WelcomeEmail.PreviewProps = {
 } as WelcomeEmailProps;
 
 export default WelcomeEmail;
+export type { WelcomeEmailProps };
