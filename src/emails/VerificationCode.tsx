@@ -29,6 +29,14 @@ export function VerificationCodeEmail({
     email_verification: "verify your email address",
   };
 
+  const purposeTextMy = {
+    registration: "melengkapkan pendaftaran anda",
+    login: "log masuk ke akaun anda",
+    forgot_password: "menetapkan semula kata laluan anda",
+    guest_booking: "mengesahkan tempahan anda",
+    email_verification: "mengesahkan alamat emel anda",
+  };
+
   const title = {
     registration: "Welcome to Fishon! 🎣",
     login: "Sign In Verification",
@@ -42,10 +50,15 @@ export function VerificationCodeEmail({
       <EmailHeader title={title[purpose]} />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName || "there"},</Text>
+        <Text style={greeting}>
+          Hi {userName || "there"}, / Hai {userName || "anda"},
+        </Text>
 
         <Text style={paragraph}>
           To {purposeText[purpose]}, please use the verification code below:
+        </Text>
+        <Text style={paragraphMy}>
+          Untuk {purposeTextMy[purpose]}, sila gunakan kod pengesahan di bawah:
         </Text>
 
         <Section style={codeBox}>
@@ -54,18 +67,20 @@ export function VerificationCodeEmail({
 
         <Section style={infoBox}>
           <Text style={infoText}>
-            <strong>Security Note:</strong>
-            <br />• This code expires in {expiryMinutes} minutes
-            <br />• Never share this code with anyone
+            <strong>Security Note / Nota Keselamatan:</strong>
+            <br />• This code expires in {expiryMinutes} minutes / Kod ini tamat
+            tempoh dalam {expiryMinutes} minit
+            <br />• Never share this code with anyone / Jangan kongsi kod ini
+            dengan sesiapa
             <br />• If you didn&apos;t request this code, please ignore this
-            email
+            email / Jika anda tidak meminta kod ini, sila abaikan emel ini
           </Text>
         </Section>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
-          Need help? Contact us at{" "}
+          Need help? / Perlukan bantuan? Contact us at / Hubungi kami di{" "}
           <a href="mailto:support@fishon.my" style={link}>
             support@fishon.my
           </a>
@@ -89,7 +104,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const codeBox = {

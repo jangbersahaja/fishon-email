@@ -17,7 +17,7 @@ interface BookingConfirmedCaptainEmailProps {
     captainEarnings?: string;
     paymentFlow?: "TOKENIZED" | "DIRECT";
 }
-export declare function BookingConfirmedCaptainEmail({ captainName, charterName, anglerName, anglerEmail, anglerPhone, tripName, tripDate, tripDays, durationHours, startTime, finalPrice, bookingUrl, subtotal, platformFee, captainEarnings, paymentFlow, }: BookingConfirmedCaptainEmailProps): React.JSX.Element;
+export declare function BookingConfirmedCaptainEmail({ captainName, charterName, anglerName, anglerEmail, anglerPhone, tripName, tripDate, tripDays, durationHours, startTime, finalPrice, bookingUrl, captainEarnings, paymentFlow, }: BookingConfirmedCaptainEmailProps): React.JSX.Element;
 export declare namespace BookingConfirmedCaptainEmail {
     var PreviewProps: BookingConfirmedCaptainEmailProps;
 }

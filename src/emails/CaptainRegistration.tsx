@@ -21,54 +21,82 @@ export function CaptainRegistrationEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {captainName},</Text>
+        <Text style={greeting}>
+          Hi {captainName}, / Hai {captainName},
+        </Text>
 
         <Text style={paragraph}>
           Congratulations! Your registration as a Captain on Fishon.my was
           successful. We&apos;re thrilled to have you join our growing community
           of professional fishing charter operators.
         </Text>
+        <Text style={paragraphMy}>
+          Tahniah! Pendaftaran anda sebagai Kapten di Fishon.my telah berjaya.
+          Kami amat gembira anda menyertai komuniti pengendali charter memancing
+          profesional kami yang semakin berkembang.
+        </Text>
 
         <Section style={successBox}>
-          <Text style={successText}>✓ Your Captain account is now active!</Text>
-        </Section>
-
-        <Section style={nextStepsBox}>
-          <Text style={nextStepsTitle}>📋 Next Steps:</Text>
-          <Text style={stepsList}>
-            <strong>1. Complete Your Profile</strong>
-            <br />
-            Add your bio, experience, and credentials
-            <br />
-            <br />
-            <strong>2. Create Your First Charter</strong>
-            <br />
-            Upload photos, set pricing, and describe your trips
-            <br />
-            <br />
-            <strong>3. Set Your Availability</strong>
-            <br />
-            Configure your calendar and booking preferences
-            <br />
-            <br />
-            <strong>4. Get Verified</strong>
-            <br />
-            Upload required documents for captain verification
+          <Text style={successText}>
+            ✓ Your Captain account is now active! / Akaun Kapten anda kini
+            aktif!
           </Text>
         </Section>
 
-        <EmailButton href={dashboardUrl}>Go to Captain Dashboard</EmailButton>
+        <Section style={nextStepsBox}>
+          <Text style={nextStepsTitle}>
+            📋 Next Steps / Langkah Seterusnya:
+          </Text>
+          <Text style={stepsList}>
+            <strong>1. Complete Your Profile / Lengkapkan Profil Anda</strong>
+            <br />
+            Add your bio, experience, and credentials / Tambah bio, pengalaman,
+            dan kelayakan anda
+            <br />
+            <br />
+            <strong>
+              2. Create Your First Charter / Cipta Charter Pertama Anda
+            </strong>
+            <br />
+            Upload photos, set pricing, and describe your trips / Muat naik
+            foto, tetapkan harga, dan terangkan perjalanan anda
+            <br />
+            <br />
+            <strong>
+              3. Set Your Availability / Tetapkan Ketersediaan Anda
+            </strong>
+            <br />
+            Configure your calendar and booking preferences / Konfigurasikan
+            kalendar dan pilihan tempahan anda
+            <br />
+            <br />
+            <strong>4. Get Verified / Dapatkan Pengesahan</strong>
+            <br />
+            Upload required documents for captain verification / Muat naik
+            dokumen yang diperlukan untuk pengesahan kapten
+          </Text>
+        </Section>
+
+        <EmailButton href={dashboardUrl}>
+          Go to Captain Dashboard / Pergi ke Papan Pemuka Kapten
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Section style={infoBox}>
-          <Text style={infoTitle}>📞 Need Help?</Text>
+          <Text style={infoTitle}>📞 Need Help? / Perlukan Bantuan?</Text>
           <Text style={infoText}>
             Our team will review your profile and contact you if we need any
             additional information. If you have questions, reach out to us:
+            <br />
+            <em>
+              Pasukan kami akan menyemak profil anda dan menghubungi anda jika
+              kami memerlukan sebarang maklumat tambahan. Jika anda mempunyai
+              pertanyaan, hubungi kami:
+            </em>
           </Text>
           <Text style={infoText}>
-            Email:{" "}
+            Email / Emel:{" "}
             <a href="mailto:captain@fishon.my" style={link}>
               captain@fishon.my
             </a>
@@ -83,6 +111,11 @@ export function CaptainRegistrationEmail({
         <Text style={footerText}>
           Welcome aboard, Captain! We look forward to helping you grow your
           fishing charter business.
+          <br />
+          <em>
+            Selamat datang ke atas kapal, Kapten! Kami tidak sabar untuk
+            membantu anda mengembangkan perniagaan charter memancing anda.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -103,7 +136,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const successBox = {

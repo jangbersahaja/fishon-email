@@ -38,8 +38,6 @@ export function BookingConfirmedCaptainEmail({
   startTime,
   finalPrice,
   bookingUrl,
-  subtotal,
-  platformFee,
   captainEarnings,
   paymentFlow,
 }: BookingConfirmedCaptainEmailProps) {
@@ -54,7 +52,9 @@ export function BookingConfirmedCaptainEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi Captain {captainName},</Text>
+        <Text style={greeting}>
+          Hi Captain {captainName}, / Hai Kapten {captainName},
+        </Text>
 
         <Text style={paragraph}>
           Great news! The booking has been confirmed. We have received{" "}
@@ -62,49 +62,73 @@ export function BookingConfirmedCaptainEmail({
           {paymentFlow === "DIRECT" ? " (paid upfront)" : " (after approval)"}.
           You may contact the angler to prepare for the trip.
         </Text>
+        <Text style={paragraphMy}>
+          Berita baik! Tempahan telah disahkan. Kami telah menerima bayaran{" "}
+          {captainEarnings}
+          {paymentFlow === "DIRECT"
+            ? " (dibayar awal)"
+            : " (selepas kelulusan)"}
+          . Anda boleh menghubungi pemancing untuk membuat persediaan
+          perjalanan.
+        </Text>
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Booking Details</Text>
+          <Text style={sectionTitle}>Booking Details / Butiran Tempahan</Text>
 
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Trip" value={tripName} />
-          <InfoBox label="Date" value={tripDateDisplay} />
-          <InfoBox label="Duration" value={durationDisplay} />
-          {startTime && <InfoBox label="Start Time" value={startTime} />}
+          <InfoBox label="Trip / Perjalanan" value={tripName} />
+          <InfoBox label="Date / Tarikh" value={tripDateDisplay} />
+          <InfoBox label="Duration / Tempoh" value={durationDisplay} />
+          {startTime && (
+            <InfoBox label="Start Time / Masa Mula" value={startTime} />
+          )}
         </Section>
 
-        {(subtotal || platformFee || captainEarnings) && (
+        {captainEarnings && (
           <Section style={detailsSection}>
-            <Text style={sectionTitle}>Payment Breakdown</Text>
-            {captainEarnings && (
-              <Section style={earningsBox}>
-                <Text style={earningsLabel}>Your Earnings</Text>
-                <Text style={earningsValue}>{captainEarnings}</Text>
-              </Section>
-            )}
+            <Text style={sectionTitle}>
+              Payment Breakdown / Pecahan Pembayaran
+            </Text>
+            <Section style={earningsBox}>
+              <Text style={earningsLabel}>Your Earnings / Pendapatan Anda</Text>
+              <Text style={earningsValue}>{captainEarnings}</Text>
+            </Section>
 
             <Text style={helperText}>
               Your earnings will be transferred to your registered bank account
               according to the payout schedule.
+              <br />
+              <em>
+                Pendapatan anda akan dipindahkan ke akaun bank berdaftar anda
+                mengikut jadual pembayaran.
+              </em>
             </Text>
           </Section>
         )}
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Angler Contact Information</Text>
+          <Text style={sectionTitle}>
+            Angler Contact Information / Maklumat Hubungan Pemancing
+          </Text>
 
-          <InfoBox label="Name" value={anglerName} />
-          <InfoBox label="Email" value={anglerEmail} />
-          <InfoBox label="Phone" value={anglerPhone} />
+          <InfoBox label="Name / Nama" value={anglerName} />
+          <InfoBox label="Email / Emel" value={anglerEmail} />
+          <InfoBox label="Phone / Telefon" value={anglerPhone} />
         </Section>
 
-        <EmailButton href={bookingUrl}>View Booking Details</EmailButton>
+        <EmailButton href={bookingUrl}>
+          View Booking Details / Lihat Butiran Tempahan
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
           Please ensure everything is ready for the trip. Have a great fishing
           adventure!
+          <br />
+          <em>
+            Sila pastikan semuanya sedia untuk perjalanan. Selamat memancing!
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -125,7 +149,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const detailsSection = {
@@ -148,6 +180,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 const earningsBox = {
@@ -178,7 +211,7 @@ const helperText = {
   fontSize: "12px",
   color: "#6b7280",
   margin: "12px 0 0 0",
-  fontStyle: "italic" as const,
+  lineHeight: "1.6",
 };
 
 // Default props for preview

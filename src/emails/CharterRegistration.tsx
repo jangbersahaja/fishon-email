@@ -23,44 +23,67 @@ export function CharterRegistrationEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {captainName},</Text>
+        <Text style={greeting}>
+          Hi {captainName}, / Hai {captainName},
+        </Text>
 
         <Text style={paragraph}>
           Congratulations! Your charter <strong>{charterName}</strong> has been
           successfully registered on Fishon.my. We&apos;re excited to help you
           connect with anglers and grow your fishing charter business.
         </Text>
+        <Text style={paragraphMy}>
+          Tahniah! Charter anda <strong>{charterName}</strong> telah berjaya
+          didaftarkan di Fishon.my. Kami teruja untuk membantu anda berhubung
+          dengan pemancing dan mengembangkan perniagaan charter memancing anda.
+        </Text>
 
         <Section style={successBox}>
-          <Text style={successText}>✓ Charter registration complete!</Text>
-        </Section>
-
-        <Section style={nextStepsBox}>
-          <Text style={nextStepsTitle}>📋 Next Steps:</Text>
-          <Text style={stepsList}>
-            <strong>1. Set Your Availability</strong>
-            <br />
-            Configure your calendar and booking preferences
-            <br />
-            <br />
-            <strong>2. Get Verified</strong>
-            <br />
-            Upload required documents for captain verification
+          <Text style={successText}>
+            ✓ Charter registration complete! / Pendaftaran charter selesai!
           </Text>
         </Section>
 
-        <EmailButton href={dashboardUrl}>Go to Dashboard</EmailButton>
+        <Section style={nextStepsBox}>
+          <Text style={nextStepsTitle}>
+            📋 Next Steps / Langkah Seterusnya:
+          </Text>
+          <Text style={stepsList}>
+            <strong>
+              1. Set Your Availability / Tetapkan Ketersediaan Anda
+            </strong>
+            <br />
+            Configure your calendar and booking preferences / Konfigurasikan
+            kalendar dan pilihan tempahan anda
+            <br />
+            <br />
+            <strong>2. Get Verified / Dapatkan Pengesahan</strong>
+            <br />
+            Upload required documents for captain verification / Muat naik
+            dokumen yang diperlukan untuk pengesahan kapten
+          </Text>
+        </Section>
+
+        <EmailButton href={dashboardUrl}>
+          Go to Dashboard / Pergi ke Papan Pemuka
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Section style={infoBox}>
-          <Text style={infoTitle}>📞 Need Help?</Text>
+          <Text style={infoTitle}>📞 Need Help? / Perlukan Bantuan?</Text>
           <Text style={infoText}>
             Our team will review your charter listing and contact you if we need
             any additional information. If you have questions, reach out to us:
+            <br />
+            <em>
+              Pasukan kami akan menyemak penyenaraian charter anda dan
+              menghubungi anda jika kami memerlukan sebarang maklumat tambahan.
+              Jika anda mempunyai pertanyaan, hubungi kami:
+            </em>
           </Text>
           <Text style={infoText}>
-            Email:{" "}
+            Email / Emel:{" "}
             <a href="mailto:captain@fishon.my" style={link}>
               captain@fishon.my
             </a>
@@ -75,6 +98,11 @@ export function CharterRegistrationEmail({
         <Text style={footerText}>
           Welcome aboard! We look forward to helping you grow your fishing
           charter business.
+          <br />
+          <em>
+            Selamat datang ke atas kapal! Kami tidak sabar untuk membantu anda
+            mengembangkan perniagaan charter memancing anda.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -95,7 +123,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const successBox = {

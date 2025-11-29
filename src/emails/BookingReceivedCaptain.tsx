@@ -41,31 +41,46 @@ export function BookingReceivedCaptainEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi Captain {captainName},</Text>
+        <Text style={greeting}>
+          Hi Captain {captainName}, / Hai Kapten {captainName},
+        </Text>
 
         <Text style={paragraph}>
           New booking received! Please proceed to accept or reject the booking.
         </Text>
+        <Text style={paragraphMy}>
+          Tempahan baharu diterima! Sila teruskan untuk menerima atau menolak
+          tempahan.
+        </Text>
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Booking Details</Text>
+          <Text style={sectionTitle}>Booking Details / Butiran Tempahan</Text>
 
-          <InfoBox label="Angler" value={anglerName} />
+          <InfoBox label="Angler / Pemancing" value={anglerName} />
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Trip" value={tripName} />
-          <InfoBox label="Date" value={tripDateDisplay} />
-          <InfoBox label="Duration" value={durationDisplay} />
-          {startTime && <InfoBox label="Start Time" value={startTime} />}
-          <InfoBox label="Total Price" value={totalPrice} />
+          <InfoBox label="Trip / Perjalanan" value={tripName} />
+          <InfoBox label="Date / Tarikh" value={tripDateDisplay} />
+          <InfoBox label="Duration / Tempoh" value={durationDisplay} />
+          {startTime && (
+            <InfoBox label="Start Time / Masa Mula" value={startTime} />
+          )}
+          <InfoBox label="Total Price / Jumlah Harga" value={totalPrice} />
         </Section>
 
-        <EmailButton href={bookingUrl}>Review Booking Request</EmailButton>
+        <EmailButton href={bookingUrl}>
+          Review Booking Request / Semak Permintaan Tempahan
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
           Please review and respond to this booking request as soon as possible.
           The angler is waiting for your confirmation.
+          <br />
+          <em>
+            Sila semak dan balas permintaan tempahan ini secepat mungkin.
+            Pemancing sedang menunggu pengesahan anda.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -86,7 +101,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const detailsSection = {
@@ -109,6 +132,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 // Default props for preview

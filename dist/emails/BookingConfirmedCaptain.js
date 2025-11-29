@@ -4,7 +4,7 @@ import { EmailButton } from "../components/EmailButton";
 import { EmailHeader } from "../components/EmailHeader";
 import { EmailLayout } from "../components/EmailLayout";
 import { InfoBox } from "../components/InfoBox";
-export function BookingConfirmedCaptainEmail({ captainName, charterName, anglerName, anglerEmail, anglerPhone, tripName, tripDate, tripDays, durationHours, startTime, finalPrice, bookingUrl, subtotal, platformFee, captainEarnings, paymentFlow, }) {
+export function BookingConfirmedCaptainEmail({ captainName, charterName, anglerName, anglerEmail, anglerPhone, tripName, tripDate, tripDays, durationHours, startTime, finalPrice, bookingUrl, captainEarnings, paymentFlow, }) {
     const tripDateDisplay = `${tripDate} • ${tripDays} ${tripDays > 1 ? "Days" : "Day"}`;
     const durationDisplay = `${durationHours} ${durationHours > 1 ? "hours" : "hour"}`;
     return (React.createElement(EmailLayout, { preview: `Booking confirmed - Payment received ${finalPrice}` },
@@ -12,6 +12,8 @@ export function BookingConfirmedCaptainEmail({ captainName, charterName, anglerN
         React.createElement(Section, { style: content },
             React.createElement(Text, { style: greeting },
                 "Hi Captain ",
+                captainName,
+                ", / Hai Kapten ",
                 captainName,
                 ","),
             React.createElement(Text, { style: paragraph },
@@ -21,27 +23,41 @@ export function BookingConfirmedCaptainEmail({ captainName, charterName, anglerN
                 " payment",
                 paymentFlow === "DIRECT" ? " (paid upfront)" : " (after approval)",
                 ". You may contact the angler to prepare for the trip."),
+            React.createElement(Text, { style: paragraphMy },
+                "Berita baik! Tempahan telah disahkan. Kami telah menerima bayaran",
+                " ",
+                captainEarnings,
+                paymentFlow === "DIRECT"
+                    ? " (dibayar awal)"
+                    : " (selepas kelulusan)",
+                ". Anda boleh menghubungi pemancing untuk membuat persediaan perjalanan."),
             React.createElement(Section, { style: detailsSection },
-                React.createElement(Text, { style: sectionTitle }, "Booking Details"),
+                React.createElement(Text, { style: sectionTitle }, "Booking Details / Butiran Tempahan"),
                 React.createElement(InfoBox, { label: "Charter", value: charterName }),
-                React.createElement(InfoBox, { label: "Trip", value: tripName }),
-                React.createElement(InfoBox, { label: "Date", value: tripDateDisplay }),
-                React.createElement(InfoBox, { label: "Duration", value: durationDisplay }),
-                startTime && React.createElement(InfoBox, { label: "Start Time", value: startTime })),
-            (subtotal || platformFee || captainEarnings) && (React.createElement(Section, { style: detailsSection },
-                React.createElement(Text, { style: sectionTitle }, "Payment Breakdown"),
-                captainEarnings && (React.createElement(Section, { style: earningsBox },
-                    React.createElement(Text, { style: earningsLabel }, "Your Earnings"),
-                    React.createElement(Text, { style: earningsValue }, captainEarnings))),
-                React.createElement(Text, { style: helperText }, "Your earnings will be transferred to your registered bank account according to the payout schedule."))),
+                React.createElement(InfoBox, { label: "Trip / Perjalanan", value: tripName }),
+                React.createElement(InfoBox, { label: "Date / Tarikh", value: tripDateDisplay }),
+                React.createElement(InfoBox, { label: "Duration / Tempoh", value: durationDisplay }),
+                startTime && (React.createElement(InfoBox, { label: "Start Time / Masa Mula", value: startTime }))),
+            captainEarnings && (React.createElement(Section, { style: detailsSection },
+                React.createElement(Text, { style: sectionTitle }, "Payment Breakdown / Pecahan Pembayaran"),
+                React.createElement(Section, { style: earningsBox },
+                    React.createElement(Text, { style: earningsLabel }, "Your Earnings / Pendapatan Anda"),
+                    React.createElement(Text, { style: earningsValue }, captainEarnings)),
+                React.createElement(Text, { style: helperText },
+                    "Your earnings will be transferred to your registered bank account according to the payout schedule.",
+                    React.createElement("br", null),
+                    React.createElement("em", null, "Pendapatan anda akan dipindahkan ke akaun bank berdaftar anda mengikut jadual pembayaran.")))),
             React.createElement(Section, { style: detailsSection },
-                React.createElement(Text, { style: sectionTitle }, "Angler Contact Information"),
-                React.createElement(InfoBox, { label: "Name", value: anglerName }),
-                React.createElement(InfoBox, { label: "Email", value: anglerEmail }),
-                React.createElement(InfoBox, { label: "Phone", value: anglerPhone })),
-            React.createElement(EmailButton, { href: bookingUrl }, "View Booking Details"),
+                React.createElement(Text, { style: sectionTitle }, "Angler Contact Information / Maklumat Hubungan Pemancing"),
+                React.createElement(InfoBox, { label: "Name / Nama", value: anglerName }),
+                React.createElement(InfoBox, { label: "Email / Emel", value: anglerEmail }),
+                React.createElement(InfoBox, { label: "Phone / Telefon", value: anglerPhone })),
+            React.createElement(EmailButton, { href: bookingUrl }, "View Booking Details / Lihat Butiran Tempahan"),
             React.createElement(Hr, { style: divider }),
-            React.createElement(Text, { style: footerText }, "Please ensure everything is ready for the trip. Have a great fishing adventure!"))));
+            React.createElement(Text, { style: footerText },
+                "Please ensure everything is ready for the trip. Have a great fishing adventure!",
+                React.createElement("br", null),
+                React.createElement("em", null, "Sila pastikan semuanya sedia untuk perjalanan. Selamat memancing!")))));
 }
 const content = {
     padding: "30px",
@@ -55,7 +71,14 @@ const paragraph = {
     fontSize: "16px",
     color: "#374151",
     lineHeight: "1.6",
+    margin: "0 0 8px",
+};
+const paragraphMy = {
+    fontSize: "14px",
+    color: "#6b7280",
+    lineHeight: "1.6",
     margin: "0 0 24px",
+    fontStyle: "italic",
 };
 const detailsSection = {
     margin: "24px 0",
@@ -74,6 +97,7 @@ const footerText = {
     fontSize: "14px",
     color: "#6b7280",
     margin: "0",
+    lineHeight: "1.6",
 };
 const earningsBox = {
     backgroundColor: "#f0fdf4",
@@ -100,7 +124,7 @@ const helperText = {
     fontSize: "12px",
     color: "#6b7280",
     margin: "12px 0 0 0",
-    fontStyle: "italic",
+    lineHeight: "1.6",
 };
 // Default props for preview
 BookingConfirmedCaptainEmail.PreviewProps = {

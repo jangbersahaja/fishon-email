@@ -29,7 +29,9 @@ export function WelcomeEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>
+          Hi {userName}, / Hai {userName},
+        </Text>
 
         <Text style={paragraph}>
           {isAngler ? (
@@ -45,13 +47,35 @@ export function WelcomeEmail({
             </>
           )}
         </Text>
+        <Text style={paragraphMy}>
+          {isAngler ? (
+            <>
+              Selamat datang ke <strong>Fishon</strong> - pasaran charter
+              memancing utama Malaysia! Kami teruja untuk membantu anda menemui
+              pengembaraan memancing yang menakjubkan.
+            </>
+          ) : (
+            <>
+              Selamat datang ke <strong>Fishon Captain</strong>! Terima kasih
+              kerana menyertai komuniti pengendali charter memancing profesional
+              kami.
+            </>
+          )}
+        </Text>
 
         {isAngler && promoCode && (
           <Section style={promoBox}>
-            <Text style={promoTitle}>🎁 Welcome Gift!</Text>
+            <Text style={promoTitle}>
+              🎁 Welcome Gift! / Hadiah Selamat Datang!
+            </Text>
             <Text style={promoDescription}>
               As a thank you for joining Fishon, here&apos;s a special 10%
               discount code for your first booking:
+              <br />
+              <em>
+                Sebagai tanda terima kasih kerana menyertai Fishon, ini kod
+                diskaun 10% khas untuk tempahan pertama anda:
+              </em>
             </Text>
             <Section style={promoCodeBox}>
               <Text style={promoCodeText}>{promoCode}</Text>
@@ -59,42 +83,57 @@ export function WelcomeEmail({
             <Text style={promoNote}>
               Use this code at checkout to get 10% off your first fishing trip.
               Happy fishing! 🎣
+              <br />
+              <em>
+                Gunakan kod ini semasa pembayaran untuk mendapat diskaun 10%
+                untuk trip memancing pertama anda. Selamat memancing!
+              </em>
             </Text>
           </Section>
         )}
 
         {isAngler ? (
           <Section style={featureBox}>
-            <Text style={featureTitle}>🎣 What You Can Do:</Text>
+            <Text style={featureTitle}>
+              🎣 What You Can Do / Apa Yang Boleh Anda Lakukan:
+            </Text>
             <Text style={featureList}>
-              • Browse hundreds of fishing charters across Malaysia
+              • Browse hundreds of fishing charters across Malaysia / Layari
+              ratusan charter memancing di seluruh Malaysia
               <br />
-              • Book trips with experienced captains
+              • Book trips with experienced captains / Tempah perjalanan dengan
+              kapten berpengalaman
               <br />
-              • Read reviews from fellow anglers
+              • Read reviews from fellow anglers / Baca ulasan daripada rakan
+              pemancing
               <br />
-              • Track your bookings and trips
-              <br />• Discover new fishing spots
+              • Track your bookings and trips / Jejaki tempahan dan perjalanan
+              anda
+              <br />• Discover new fishing spots / Temui lokasi memancing baharu
             </Text>
           </Section>
         ) : (
           <Section style={featureBox}>
-            <Text style={featureTitle}>⚓ Next Steps:</Text>
+            <Text style={featureTitle}>
+              ⚓ Next Steps / Langkah Seterusnya:
+            </Text>
             <Text style={featureList}>
-              • Complete your captain profile
+              • Complete your captain profile / Lengkapkan profil kapten anda
               <br />
-              • Add your fishing charters
+              • Add your fishing charters / Tambah charter memancing anda
               <br />
-              • Upload photos and videos
+              • Upload photos and videos / Muat naik foto dan video
               <br />
-              • Set your availability
-              <br />• Start receiving bookings!
+              • Set your availability / Tetapkan ketersediaan anda
+              <br />• Start receiving bookings! / Mula menerima tempahan!
             </Text>
           </Section>
         )}
 
         <EmailButton href={loginUrl}>
-          {isAngler ? "Start Exploring" : "Go to Dashboard"}
+          {isAngler
+            ? "Start Exploring / Mula Meneroka"
+            : "Go to Dashboard / Pergi ke Papan Pemuka"}
         </EmailButton>
 
         <Hr style={divider} />
@@ -104,6 +143,11 @@ export function WelcomeEmail({
             <>
               Ready to book your first trip? Browse our charters and find your
               perfect fishing adventure!
+              <br />
+              <em>
+                Bersedia untuk menempah perjalanan pertama anda? Layari charter
+                kami dan cari pengembaraan memancing yang sempurna!
+              </em>
             </>
           ) : (
             <>
@@ -111,6 +155,13 @@ export function WelcomeEmail({
               <a href="mailto:captain@fishon.my" style={link}>
                 captain@fishon.my
               </a>
+              <br />
+              <em>
+                Perlukan bantuan untuk bermula? Hubungi pasukan kami di{" "}
+                <a href="mailto:captain@fishon.my" style={link}>
+                  captain@fishon.my
+                </a>
+              </em>
             </>
           )}
         </Text>
@@ -133,7 +184,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const featureBox = {
@@ -152,9 +211,9 @@ const featureTitle = {
 };
 
 const featureList = {
-  fontSize: "15px",
+  fontSize: "14px",
   color: "#166534",
-  lineHeight: "1.8",
+  lineHeight: "2",
   margin: "0",
 };
 
@@ -167,6 +226,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 const link = {
@@ -191,7 +251,7 @@ const promoTitle = {
 };
 
 const promoDescription = {
-  fontSize: "15px",
+  fontSize: "14px",
   color: "#78350f",
   lineHeight: "1.6",
   margin: "0 0 16px",
@@ -219,7 +279,7 @@ const promoNote = {
   fontSize: "13px",
   color: "#92400e",
   margin: "0",
-  fontStyle: "italic" as const,
+  lineHeight: "1.6",
 };
 
 WelcomeEmail.PreviewProps = {

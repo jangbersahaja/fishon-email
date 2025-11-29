@@ -34,7 +34,9 @@ export function BookingPaymentReminderEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>
+          Hi {userName}, / Hai {userName},
+        </Text>
 
         <Section style={isUrgent ? urgentBox : reminderBox}>
           <Text style={isUrgent ? urgentText : reminderText}>
@@ -42,11 +44,22 @@ export function BookingPaymentReminderEmail({
               <>
                 <strong>Urgent:</strong> You have only {hoursRemaining} hours
                 left to complete payment for your approved booking!
+                <br />
+                <em>
+                  <strong>Segera:</strong> Anda hanya mempunyai {hoursRemaining}{" "}
+                  jam lagi untuk melengkapkan bayaran bagi tempahan yang
+                  diluluskan!
+                </em>
               </>
             ) : (
               <>
                 You have {hoursRemaining} hours remaining to complete payment
                 for your approved booking.
+                <br />
+                <em>
+                  Anda mempunyai {hoursRemaining} jam lagi untuk melengkapkan
+                  bayaran bagi tempahan yang diluluskan.
+                </em>
               </>
             )}
           </Text>
@@ -57,15 +70,25 @@ export function BookingPaymentReminderEmail({
           approved by the captain. Complete your payment now to secure your spot
           before it expires.
         </Text>
+        <Text style={paragraphMy}>
+          Tempahan anda untuk <strong>{charterName}</strong> pada {tripDate}{" "}
+          telah diluluskan oleh kapten. Lengkapkan bayaran anda sekarang untuk
+          memastikan tempat anda sebelum tamat tempoh.
+        </Text>
 
         <Section style={detailsSection}>
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Date" value={tripDate} />
-          <InfoBox label="Time Remaining" value={`${hoursRemaining} hours`} />
+          <InfoBox label="Date / Tarikh" value={tripDate} />
+          <InfoBox
+            label="Time Remaining / Masa Berbaki"
+            value={`${hoursRemaining} hours / jam`}
+          />
         </Section>
 
         <EmailButton href={paymentUrl}>
-          {isUrgent ? "Pay Now - Don't Miss Out!" : "Complete Payment"}
+          {isUrgent
+            ? "Pay Now - Don't Miss Out! / Bayar Sekarang!"
+            : "Complete Payment / Lengkapkan Bayaran"}
         </EmailButton>
 
         <Hr style={divider} />
@@ -76,6 +99,16 @@ export function BookingPaymentReminderEmail({
             here
           </Link>
           . Otherwise, your booking will automatically expire after 48 hours.
+          <br />
+          <em>
+            Jika anda tidak mahu meneruskan tempahan ini, anda boleh
+            membatalkannya{" "}
+            <Link href={confirmationUrl} style={link}>
+              di sini
+            </Link>
+            . Jika tidak, tempahan anda akan tamat tempoh secara automatik
+            selepas 48 jam.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -104,6 +137,7 @@ const reminderText = {
   fontSize: "16px",
   color: "#92400e",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 const urgentBox = {
@@ -119,13 +153,22 @@ const urgentText = {
   color: "#991b1b",
   margin: "0",
   fontWeight: "600",
+  lineHeight: "1.6",
 };
 
 const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const detailsSection = {
@@ -141,6 +184,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 const link = {

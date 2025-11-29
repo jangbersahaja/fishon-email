@@ -13,20 +13,26 @@ export function BookingReceivedCaptainEmail({ captainName, charterName, anglerNa
             React.createElement(Text, { style: greeting },
                 "Hi Captain ",
                 captainName,
+                ", / Hai Kapten ",
+                captainName,
                 ","),
             React.createElement(Text, { style: paragraph }, "New booking received! Please proceed to accept or reject the booking."),
+            React.createElement(Text, { style: paragraphMy }, "Tempahan baharu diterima! Sila teruskan untuk menerima atau menolak tempahan."),
             React.createElement(Section, { style: detailsSection },
-                React.createElement(Text, { style: sectionTitle }, "Booking Details"),
-                React.createElement(InfoBox, { label: "Angler", value: anglerName }),
+                React.createElement(Text, { style: sectionTitle }, "Booking Details / Butiran Tempahan"),
+                React.createElement(InfoBox, { label: "Angler / Pemancing", value: anglerName }),
                 React.createElement(InfoBox, { label: "Charter", value: charterName }),
-                React.createElement(InfoBox, { label: "Trip", value: tripName }),
-                React.createElement(InfoBox, { label: "Date", value: tripDateDisplay }),
-                React.createElement(InfoBox, { label: "Duration", value: durationDisplay }),
-                startTime && React.createElement(InfoBox, { label: "Start Time", value: startTime }),
-                React.createElement(InfoBox, { label: "Total Price", value: totalPrice })),
-            React.createElement(EmailButton, { href: bookingUrl }, "Review Booking Request"),
+                React.createElement(InfoBox, { label: "Trip / Perjalanan", value: tripName }),
+                React.createElement(InfoBox, { label: "Date / Tarikh", value: tripDateDisplay }),
+                React.createElement(InfoBox, { label: "Duration / Tempoh", value: durationDisplay }),
+                startTime && (React.createElement(InfoBox, { label: "Start Time / Masa Mula", value: startTime })),
+                React.createElement(InfoBox, { label: "Total Price / Jumlah Harga", value: totalPrice })),
+            React.createElement(EmailButton, { href: bookingUrl }, "Review Booking Request / Semak Permintaan Tempahan"),
             React.createElement(Hr, { style: divider }),
-            React.createElement(Text, { style: footerText }, "Please review and respond to this booking request as soon as possible. The angler is waiting for your confirmation."))));
+            React.createElement(Text, { style: footerText },
+                "Please review and respond to this booking request as soon as possible. The angler is waiting for your confirmation.",
+                React.createElement("br", null),
+                React.createElement("em", null, "Sila semak dan balas permintaan tempahan ini secepat mungkin. Pemancing sedang menunggu pengesahan anda.")))));
 }
 const content = {
     padding: "30px",
@@ -40,7 +46,14 @@ const paragraph = {
     fontSize: "16px",
     color: "#374151",
     lineHeight: "1.6",
+    margin: "0 0 8px",
+};
+const paragraphMy = {
+    fontSize: "14px",
+    color: "#6b7280",
+    lineHeight: "1.6",
     margin: "0 0 24px",
+    fontStyle: "italic",
 };
 const detailsSection = {
     margin: "24px 0",
@@ -59,6 +72,7 @@ const footerText = {
     fontSize: "14px",
     color: "#6b7280",
     margin: "0",
+    lineHeight: "1.6",
 };
 // Default props for preview
 BookingReceivedCaptainEmail.PreviewProps = {

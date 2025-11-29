@@ -26,16 +26,24 @@ export function BookingRejectedEmail({
       <EmailHeader title="Booking Update" subtitle="We're here to help" />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>
+          Hi {userName}, / Hai {userName},
+        </Text>
 
         <Text style={paragraph}>
           We&apos;re sorry, but your booking request for{" "}
           <strong>{charterName}</strong> could not be accommodated at this time.
         </Text>
+        <Text style={paragraphMy}>
+          Maaf, permintaan tempahan anda untuk <strong>{charterName}</strong>{" "}
+          tidak dapat dipenuhi pada masa ini.
+        </Text>
 
         {reason && (
           <Section style={reasonBox}>
-            <Text style={reasonLabel}>Reason from Captain:</Text>
+            <Text style={reasonLabel}>
+              Reason from Captain / Sebab dari Kapten:
+            </Text>
             <Text style={reasonText}>{reason}</Text>
           </Section>
         )}
@@ -46,6 +54,12 @@ export function BookingRejectedEmail({
               💳 <strong>Good news:</strong> Your card was only authorized, not
               charged. The authorization has been released and you will not see
               any charge on your statement.
+              <br />
+              <em style={{ color: "#166534" }}>
+                Berita baik: Kad anda hanya diluluskan, tidak dicaj. Kelulusan
+                telah dilepaskan dan anda tidak akan melihat sebarang caj pada
+                penyata anda.
+              </em>
             </Text>
           </Section>
         )}
@@ -56,6 +70,12 @@ export function BookingRejectedEmail({
               💰 <strong>Refund initiated:</strong> We&apos;ve started
               processing your refund of {refundAmount}. The funds should appear
               in your account within 3-5 business days.
+              <br />
+              <em style={{ color: "#166534" }}>
+                Bayaran balik dimulakan: Kami telah memulakan pemprosesan
+                bayaran balik sebanyak {refundAmount}. Dana akan muncul dalam
+                akaun anda dalam 3-5 hari bekerja.
+              </em>
             </Text>
           </Section>
         )}
@@ -64,14 +84,26 @@ export function BookingRejectedEmail({
           Don&apos;t worry! We have many other amazing fishing charters
           available. Browse our selection to find your next adventure.
         </Text>
+        <Text style={paragraphMy}>
+          Jangan risau! Kami mempunyai banyak charter memancing lain yang
+          menarik. Layari pilihan kami untuk mencari pengembaraan anda yang
+          seterusnya.
+        </Text>
 
-        <EmailButton href={searchUrl}>Find Other Charters</EmailButton>
+        <EmailButton href={searchUrl}>
+          Find Other Charters / Cari Charter Lain
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
           Need help finding the perfect charter? Contact our support team and
           we&apos;ll be happy to assist you.
+          <br />
+          <em>
+            Perlukan bantuan mencari charter yang sesuai? Hubungi pasukan
+            sokongan kami dan kami akan gembira membantu anda.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -92,7 +124,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const reasonBox = {
@@ -140,6 +180,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 BookingRejectedEmail.PreviewProps = {

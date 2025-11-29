@@ -43,11 +43,17 @@ export function BookingCreatedEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>
+          Hi {userName}, / Hai {userName},
+        </Text>
 
         <Text style={paragraph}>
           Thank you for choosing Fishon! We&apos;ve received your booking
           request and the captain will review it shortly.
+        </Text>
+        <Text style={paragraphMy}>
+          Terima kasih kerana memilih Fishon! Kami telah menerima permintaan
+          tempahan anda dan kapten akan menyemaknya tidak lama lagi.
         </Text>
 
         {paymentFlow === "TOKENIZED" && (
@@ -56,6 +62,11 @@ export function BookingCreatedEmail({
               💳 <strong>Your card has been authorized</strong> (not charged
               yet). We&apos;ll only charge your card if the captain approves
               your booking.
+              <br />
+              <em style={{ color: "#1e40af" }}>
+                Kad anda telah diluluskan (belum dicaj). Kami hanya akan mencaj
+                kad anda jika kapten meluluskan tempahan anda.
+              </em>
             </Text>
           </Section>
         )}
@@ -66,28 +77,43 @@ export function BookingCreatedEmail({
               ✅ <strong>Payment received!</strong> Your payment of {totalPrice}{" "}
               has been received and is being held securely. It will be released
               to the captain once they approve your booking.
+              <br />
+              <em style={{ color: "#1e40af" }}>
+                Bayaran diterima! Bayaran anda sebanyak {totalPrice} telah
+                diterima dan disimpan dengan selamat. Ia akan dilepaskan kepada
+                kapten sebaik sahaja mereka meluluskan tempahan anda.
+              </em>
             </Text>
           </Section>
         )}
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Booking Details</Text>
+          <Text style={sectionTitle}>Booking Details / Butiran Tempahan</Text>
 
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Trip" value={tripName} />
-          <InfoBox label="Date" value={tripDateDisplay} />
-          <InfoBox label="Duration" value={durationDisplay} />
-          {startTime && <InfoBox label="Start Time" value={startTime} />}
-          <InfoBox label="Total Price" value={totalPrice} />
+          <InfoBox label="Trip / Perjalanan" value={tripName} />
+          <InfoBox label="Date / Tarikh" value={tripDateDisplay} />
+          <InfoBox label="Duration / Tempoh" value={durationDisplay} />
+          {startTime && (
+            <InfoBox label="Start Time / Masa Mula" value={startTime} />
+          )}
+          <InfoBox label="Total Price / Jumlah Harga" value={totalPrice} />
         </Section>
 
-        <EmailButton href={confirmationUrl}>View Booking Details</EmailButton>
+        <EmailButton href={confirmationUrl}>
+          View Booking Details / Lihat Butiran Tempahan
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
           You&apos;ll receive another email once the captain approves your
           booking. If you have any questions, feel free to contact us.
+          <br />
+          <em>
+            Anda akan menerima emel lain sebaik sahaja kapten meluluskan
+            tempahan anda. Jika ada sebarang pertanyaan, sila hubungi kami.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -108,7 +134,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const infoBox = {
@@ -146,6 +180,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 // Default props for preview

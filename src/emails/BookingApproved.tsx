@@ -28,11 +28,17 @@ export function BookingApprovedEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>
+          Hi {userName}, / Hai {userName},
+        </Text>
 
         <Section style={successBox}>
           <Text style={successText}>
             ✅ Great news! Your booking has been approved by the captain.
+            <br />
+            <span style={{ fontWeight: "normal" }}>
+              Berita baik! Tempahan anda telah diluluskan oleh kapten.
+            </span>
           </Text>
         </Section>
 
@@ -40,20 +46,32 @@ export function BookingApprovedEmail({
           Complete your payment within <strong>48 hours</strong> to confirm your
           booking and secure your spot.
         </Text>
+        <Text style={paragraphMy}>
+          Lengkapkan bayaran anda dalam masa <strong>48 jam</strong> untuk
+          mengesahkan tempahan dan memastikan tempat anda.
+        </Text>
 
         <Section style={warningBox}>
           <Text style={warningText}>
-            ⏰ <strong>Payment Deadline:</strong> Your booking will expire if
-            payment is not received within 48 hours. Don't miss out!
+            ⏰ <strong>Payment Deadline / Tarikh Akhir Bayaran:</strong> Your
+            booking will expire if payment is not received within 48 hours.
+            Don't miss out!
+            <br />
+            <em>
+              Tempahan anda akan tamat tempoh jika bayaran tidak diterima dalam
+              48 jam. Jangan lepaskan!
+            </em>
           </Text>
         </Section>
 
         <Section style={detailsSection}>
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Date" value={tripDate} />
+          <InfoBox label="Date / Tarikh" value={tripDate} />
         </Section>
 
-        <EmailButton href={paymentUrl}>Complete Payment Now</EmailButton>
+        <EmailButton href={paymentUrl}>
+          Complete Payment Now / Lengkapkan Bayaran Sekarang
+        </EmailButton>
 
         <Hr style={divider} />
 
@@ -63,6 +81,14 @@ export function BookingApprovedEmail({
             here
           </Link>
           .
+          <br />
+          <em>
+            Ada soalan? Lihat butiran penuh tempahan anda{" "}
+            <Link href={confirmationUrl} style={link}>
+              di sini
+            </Link>
+            .
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -92,6 +118,7 @@ const successText = {
   color: "#166534",
   margin: "0",
   fontWeight: "600",
+  lineHeight: "1.6",
 };
 
 const warningBox = {
@@ -106,13 +133,22 @@ const warningText = {
   fontSize: "14px",
   color: "#92400e",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const detailsSection = {
@@ -128,6 +164,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 const link = {

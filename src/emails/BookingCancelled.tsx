@@ -32,35 +32,49 @@ export function BookingCancelledEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi Captain {captainName},</Text>
+        <Text style={greeting}>
+          Hi Captain {captainName}, / Hai Kapten {captainName},
+        </Text>
 
         <Text style={paragraph}>
           A booking for your charter has been cancelled by the angler.
         </Text>
+        <Text style={paragraphMy}>
+          Tempahan untuk charter anda telah dibatalkan oleh pemancing.
+        </Text>
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Booking Details</Text>
+          <Text style={sectionTitle}>Booking Details / Butiran Tempahan</Text>
 
-          <InfoBox label="Angler" value={anglerName} />
+          <InfoBox label="Angler / Pemancing" value={anglerName} />
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Trip" value={tripName} />
-          <InfoBox label="Date" value={tripDate} />
+          <InfoBox label="Trip / Perjalanan" value={tripName} />
+          <InfoBox label="Date / Tarikh" value={tripDate} />
         </Section>
 
         {cancellationReason && (
           <Section style={reasonSection}>
-            <Text style={reasonTitle}>Cancellation Reason</Text>
+            <Text style={reasonTitle}>
+              Cancellation Reason / Sebab Pembatalan
+            </Text>
             <Text style={reasonText}>{cancellationReason}</Text>
           </Section>
         )}
 
-        <EmailButton href={bookingUrl}>View Booking Details</EmailButton>
+        <EmailButton href={bookingUrl}>
+          View Booking Details / Lihat Butiran Tempahan
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
           If you have any questions about this cancellation, please contact our
           support team.
+          <br />
+          <em>
+            Jika anda mempunyai sebarang pertanyaan mengenai pembatalan ini,
+            sila hubungi pasukan sokongan kami.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -81,7 +95,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const detailsSection = {
@@ -126,6 +148,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 // Default props for preview

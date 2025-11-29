@@ -47,48 +47,70 @@ export function BookingConfirmedAnglerEmail({
       />
 
       <Section style={content}>
-        <Text style={greeting}>Hi {userName},</Text>
+        <Text style={greeting}>
+          Hi {userName}, / Hai {userName},
+        </Text>
 
         <Text style={paragraph}>
           Great news! Your booking has been confirmed. We have received your
           payment of {finalPrice}. You may contact Captain {captainName} to
           prepare for the trip.
         </Text>
+        <Text style={paragraphMy}>
+          Berita baik! Tempahan anda telah disahkan. Kami telah menerima bayaran
+          anda sebanyak {finalPrice}. Anda boleh menghubungi Kapten{" "}
+          {captainName} untuk membuat persediaan perjalanan.
+        </Text>
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Payment Details</Text>
+          <Text style={sectionTitle}>Payment Details / Butiran Pembayaran</Text>
 
-          <InfoBox label="Amount Paid" value={finalPrice} />
+          <InfoBox label="Amount Paid / Jumlah Dibayar" value={finalPrice} />
           {paymentMethod && (
-            <InfoBox label="Payment Method" value={paymentMethod} />
+            <InfoBox
+              label="Payment Method / Kaedah Pembayaran"
+              value={paymentMethod}
+            />
           )}
         </Section>
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Booking Details</Text>
+          <Text style={sectionTitle}>Booking Details / Butiran Tempahan</Text>
 
           <InfoBox label="Charter" value={charterName} />
-          <InfoBox label="Trip" value={tripName} />
-          <InfoBox label="Date" value={tripDateDisplay} />
-          <InfoBox label="Duration" value={durationDisplay} />
-          {startTime && <InfoBox label="Start Time" value={startTime} />}
+          <InfoBox label="Trip / Perjalanan" value={tripName} />
+          <InfoBox label="Date / Tarikh" value={tripDateDisplay} />
+          <InfoBox label="Duration / Tempoh" value={durationDisplay} />
+          {startTime && (
+            <InfoBox label="Start Time / Masa Mula" value={startTime} />
+          )}
         </Section>
 
         <Section style={detailsSection}>
-          <Text style={sectionTitle}>Captain Contact Information</Text>
+          <Text style={sectionTitle}>
+            Captain Contact Information / Maklumat Hubungan Kapten
+          </Text>
 
-          <InfoBox label="Name" value={captainName} />
-          <InfoBox label="Email" value={captainEmail} />
-          <InfoBox label="Phone" value={captainPhone} />
+          <InfoBox label="Name / Nama" value={captainName} />
+          <InfoBox label="Email / Emel" value={captainEmail} />
+          <InfoBox label="Phone / Telefon" value={captainPhone} />
         </Section>
 
-        <EmailButton href={bookingUrl}>View Booking Details</EmailButton>
+        <EmailButton href={bookingUrl}>
+          View Booking Details / Lihat Butiran Tempahan
+        </EmailButton>
 
         <Hr style={divider} />
 
         <Text style={footerText}>
           Get ready for an amazing fishing adventure! If you have any questions,
           feel free to contact your captain or our support team.
+          <br />
+          <em>
+            Bersiap sedia untuk pengembaraan memancing yang menarik! Jika ada
+            sebarang pertanyaan, sila hubungi kapten anda atau pasukan sokongan
+            kami.
+          </em>
         </Text>
       </Section>
     </EmailLayout>
@@ -109,7 +131,15 @@ const paragraph = {
   fontSize: "16px",
   color: "#374151",
   lineHeight: "1.6",
+  margin: "0 0 8px",
+};
+
+const paragraphMy = {
+  fontSize: "14px",
+  color: "#6b7280",
+  lineHeight: "1.6",
   margin: "0 0 24px",
+  fontStyle: "italic" as const,
 };
 
 const detailsSection = {
@@ -132,6 +162,7 @@ const footerText = {
   fontSize: "14px",
   color: "#6b7280",
   margin: "0",
+  lineHeight: "1.6",
 };
 
 // Default props for preview
