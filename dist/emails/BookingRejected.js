@@ -120,6 +120,6 @@ BookingRejectedEmail.PreviewProps = {
     userName: "Ahmad",
     charterName: "Full Day Deep Sea Adventure",
     reason: "Unfortunately, we are fully booked for this date. Please check our availability calendar for other dates.",
-    searchUrl: "https://fishon.my/charters",
+    searchUrl: "https://fishon.my/search",
 };
 export default BookingRejectedEmail;
