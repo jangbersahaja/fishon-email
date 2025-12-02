@@ -10,6 +10,9 @@ import BookingRejectedEmail from "./emails/BookingRejected";
 import CaptainRegistrationEmail from "./emails/CaptainRegistration";
 import CharterRegistrationEmail from "./emails/CharterRegistration";
 import PasswordChangedEmail from "./emails/PasswordChanged";
+import ReferralCommissionEarnedEmail from "./emails/ReferralCommissionEarned";
+import ReferralCommissionPaidEmail from "./emails/ReferralCommissionPaid";
+import ReferralSignupEmail from "./emails/ReferralSignup";
 import VerificationCodeEmail from "./emails/VerificationCode";
 import WelcomeEmail from "./emails/Welcome";
 // Export all email templates
@@ -23,6 +26,9 @@ export { default as BookingRejectedEmail } from "./emails/BookingRejected";
 export { default as CaptainRegistrationEmail } from "./emails/CaptainRegistration";
 export { default as CharterRegistrationEmail } from "./emails/CharterRegistration";
 export { default as PasswordChangedEmail } from "./emails/PasswordChanged";
+export { default as ReferralCommissionEarnedEmail } from "./emails/ReferralCommissionEarned";
+export { default as ReferralCommissionPaidEmail } from "./emails/ReferralCommissionPaid";
+export { default as ReferralSignupEmail } from "./emails/ReferralSignup";
 export { default as VerificationCodeEmail } from "./emails/VerificationCode";
 export { default as WelcomeEmail } from "./emails/Welcome";
 // Export components for custom emails
@@ -67,4 +73,14 @@ export async function renderBookingConfirmedCaptainEmail(props) {
 }
 export async function renderBookingConfirmedAnglerEmail(props) {
     return render(React.createElement(BookingConfirmedAnglerEmail, props));
+}
+// Email rendering functions - Referral Programme
+export async function renderReferralSignupEmail(props) {
+    return render(React.createElement(ReferralSignupEmail, props));
+}
+export async function renderReferralCommissionEarnedEmail(props) {
+    return render(React.createElement(ReferralCommissionEarnedEmail, props));
+}
+export async function renderReferralCommissionPaidEmail(props) {
+    return render(React.createElement(ReferralCommissionPaidEmail, props));
 }
